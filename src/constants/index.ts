@@ -1,0 +1,1 @@
+export { PATH_NAMES } from './path-name.ts';
