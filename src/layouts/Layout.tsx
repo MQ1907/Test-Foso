@@ -1,24 +1,26 @@
-import { Link, Outlet } from "react-router";
-import { PATH_NAMES } from "@/constants";
+import { Outlet } from "react-router";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { CartSheet } from "@/components/cart";
 
 export const Layout = () => {
   return (
-    <div className="app-layout">
-      <header className="app-header">
-        <nav>
-          <Link to={PATH_NAMES.HOME}>Home</Link>
-          <Link to={PATH_NAMES.ABOUT}>About</Link>
-          <Link to={PATH_NAMES.CONTACT}>Contact</Link>
-        </nav>
-      </header>
+    <div className="min-h-screen bg-[#5a4224] text-zinc-100">
+      <div className="relative min-h-screen">
+        <div className="pointer-events-none absolute inset-0 opacity-55">
+          <div className="h-full w-full bg-[radial-gradient(circle_at_20%_10%,rgba(0,0,0,0.25),transparent_45%),radial-gradient(circle_at_80%_40%,rgba(0,0,0,0.25),transparent_45%),linear-gradient(180deg,rgba(0,0,0,0.10),rgba(0,0,0,0.58))]" />
+        </div>
 
-      <main className="app-main">
-        <Outlet />
-      </main>
+        <Header />
 
-      <footer className="app-footer">
-        <p>&copy; 2026 My App</p>
-      </footer>
+        <main className="relative">
+          <Outlet />
+        </main>
+
+        <Footer />
+      </div>
+
+      <CartSheet />
     </div>
   );
 };
