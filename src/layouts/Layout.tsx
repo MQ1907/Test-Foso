@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { CartSheet } from "@/components/cart";
 
 export const Layout = () => {
   return (
@@ -18,6 +19,8 @@ export const Layout = () => {
 
         <Footer />
       </div>
+
+      <CartSheet />
     </div>
   );
 };

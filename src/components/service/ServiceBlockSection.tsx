@@ -8,7 +8,6 @@ export const ServiceBlockSection = ({
   block: ServiceBlock;
   align?: "image-left" | "image-right";
 }) => {
-
   const image = (
     <div className="relative h-[1000px] w-full overflow-hidden lg:h-[400px] lg:max-w-[450px]">
       <img
@@ -29,7 +28,7 @@ export const ServiceBlockSection = ({
       </h3>
       <div className="space-y-1">
         {block.items.map((item) => (
-          <ServiceRow key={item.id} item={item} />
+          <ServiceRow key={item.id} item={item} image={block.image} />
         ))}
       </div>
     </div>
@@ -53,4 +52,3 @@ export const ServiceBlockSection = ({
     </section>
   );
 };
-

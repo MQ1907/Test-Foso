@@ -2,6 +2,7 @@ import { NavLink, Link } from "react-router";
 import { PATH_NAMES } from "@/constants";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ChevronRight } from "lucide-react";
+import { useCart } from "@/hooks/useCart";
 
 const navItems = [
   { to: PATH_NAMES.HOME, label: "Trang chủ" },
@@ -12,6 +13,8 @@ const navItems = [
 ];
 
 export const Header = () => {
+  const { setIsOpen, totalItems } = useCart();
+
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-6xl px-4">
@@ -45,9 +48,7 @@ export const Header = () => {
                   className={({ isActive }) =>
                     [
                       "transition",
-                      isActive
-                        ? "text-amber-100"
-                        : "hover:text-amber-100",
+                      isActive ? "text-amber-100" : "hover:text-amber-100",
                     ].join(" ")
                   }
                 >
@@ -61,13 +62,21 @@ export const Header = () => {
           <div className="flex items-center justify-end">
             <Button
               size="sm"
+              onClick={() => setIsOpen(true)}
               className="flex items-center gap-2 rounded-full bg-[#b96b10] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-white shadow-md shadow-black/30 hover:bg-[#d27c10]"
             >
               <ShoppingBag className="h-4 w-4" />
               <span>Giỏ hàng</span>
-              <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/70 text-[11px]">
-                <ChevronRight className="h-3 w-3" />
-              </span>
+              {totalItems > 0 && (
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-[11px] font-bold text-[#b96b10]">
+                  {totalItems}
+                </span>
+              )}
+              {totalItems === 0 && (
+                <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/70 text-[11px]">
+                  <ChevronRight className="h-3 w-3" />
+                </span>
+              )}
             </Button>
           </div>
         </div>
@@ -75,4 +84,3 @@ export const Header = () => {
     </header>
   );
 };
-
